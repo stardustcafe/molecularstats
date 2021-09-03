@@ -10,8 +10,11 @@ The program can:
 Future work:
 1. Adding general support for other molecular symbols like bonds (Basically to eliminate them)
 2. Making Number of Elements generalized and not restricted to 2 digits.
+3. Setting Up PyPi package.
+
 
 Usage:
+You can simply git clone and use it for your projects. The project has GPL License. 
 
 	from molstats.molstats import Molecule
 	f1=Molecule('CH3CH4')
