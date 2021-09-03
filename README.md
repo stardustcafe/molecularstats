@@ -13,8 +13,8 @@ Future work:
 
 Usage:
 
-	from molstats import molstats  
-	f1=molstats.Molecule('CH3CH4')
+	from molstats.molstats import Molecule
+	f1=Molecule('CH3CH4')
 	f1.getMolecularWeight()
 	31.07698
 	f1.getNumElements()
