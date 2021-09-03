@@ -10,3 +10,12 @@ The program can:
 Future work:
 1. Adding general support for other molecular symbols like bonds (Basically to eliminate them)
 2. Making Number of Elements generalized and not restricted to 2 digits.
+
+Usage:
+
+	from molstats import molstats  
+	f1=molstats.Molecule('CH3CH4')
+	f1.getMolecularWeight()
+	31.07698
+	f1.getNumElements()
+	9
