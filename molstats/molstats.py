@@ -1,4 +1,7 @@
 #molstats.py
+##Dictionary of all elements with molecular weight
+
+
 MM_of_Elements = {'H': 1.00794, 'He': 4.002602, 'Li': 6.941, 'Be': 9.012182, 'B': 10.811, 'C': 12.0107, 'N': 14.0067,
               'O': 15.9994, 'F': 18.9984032, 'Ne': 20.1797, 'Na': 22.98976928, 'Mg': 24.305, 'Al': 26.9815386,
               'Si': 28.0855, 'P': 30.973762, 'S': 32.065, 'Cl': 35.453, 'Ar': 39.948, 'K': 39.0983, 'Ca': 40.078,
@@ -20,13 +23,14 @@ MM_of_Elements = {'H': 1.00794, 'He': 4.002602, 'Li': 6.941, 'Be': 9.012182, 'B'
               'ZERO': 0}
 
 
+#Class Molecule with name as string in standard format. Characters allowed are all combo of chemical Symbols, 2 digit number and '(' and ')'
 class Molecule:
     # init method or constructor 
     def __init__(self, name):
-        if type(name)==str:
-            self.data = name
+        if not type(name)==str:
+            raise ValueError
         else:
-            print('DataType not supported')
+            self.data = name
     # Sample Method 
     def calculate_num(self):
         s2=self.data
