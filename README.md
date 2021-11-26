@@ -1,5 +1,5 @@
 # molecularstats
-This project came out from a simple requirement to calculate Molecular Weight and number of atoms in a mulecule for >1000 different compounds. I didn't get any good implementation of same and decided to make one based on pure python which also supports brackets.
+This project came out from a simple requirement to calculate Molecular Weight from text and number of atoms in a mulecule for >1000 different compounds. I didn't get any good implementation of same and decided to make one based on pure python which also supports brackets.
 
 The program can:
 1. Calculate Molecular Weight and Number of Molecules for any given string with molecular formula in standard format without spacing and subscripts.
