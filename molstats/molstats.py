@@ -20,7 +20,7 @@ MM_of_Elements = {'H': 1.00794, 'He': 4.002602, 'Li': 6.941, 'Be': 9.012182, 'B'
               'Cm': 247.0703, 'Bk': 247.0703, 'Cf': 251.0796, 'Es': 252.0829, 'Fm': 257.0951, 'Md': 258.0951,
               'No': 259.1009, 'Lr': 262, 'Rf': 267, 'Db': 268, 'Sg': 271, 'Bh': 270, 'Hs': 269, 'Mt': 278,
               'Ds': 281, 'Rg': 281, 'Cn': 285, 'Nh': 284, 'Fl': 289, 'Mc': 289, 'Lv': 292, 'Ts': 294, 'Og': 294,
-              'ZERO': 0}
+              'ZERO': 0,'D':2.014,'T':3.01604}
 
 
 #Class Molecule with name as string in standard format. Characters allowed are all combo of chemical Symbols, 2 digit number and '(' and ')'
@@ -34,6 +34,12 @@ class Molecule:
     # Sample Method 
     def calculate_num(self):
         s2=self.data
+        s2=s2.rstrip().lstrip()
+        err=0
+        if s2[-1:].isupper():
+            s2=s2+'1'
+        if s2[0].isupper() and not(s2[1].islower()) and not (s2[1].isnumeric()):
+            s2=s2[0]+'1'+s2[1:]
         s1=s2[::-1]
         n1=[]
         n2=[]
@@ -50,7 +56,7 @@ class Molecule:
             if s2[1].isnumeric():
                 n1.append(s2[0])
                 n2.append(int(s2[1]))
-            else:
+            elif s2[1].isalpha():
                 if s2[1].islower():
                     n1.append(s2)
                     n2.append(1)
@@ -82,22 +88,28 @@ class Molecule:
                         n1.append(s1[i])
                         n2.append(1*total_mul)
                 elif s1[i].isalpha() and s1[i-1].isalpha():
+                    err=5
                     if s1[i-1].islower() and s1[i].isupper():
-                        if i<len(s1)-2:
+                        if i<len(s1):
                             if s1[i-2].isnumeric():
                                 n1.append(s1[i]+s1[i-1])
                                 n2.append(int(s1[i-2])*total_mul)
+                                err=2
                             else:
                                 n1.append(s1[i]+s1[i-1])
                                 n2.append(1*total_mul)
+                                err=1
                         else:
                             n1.append(s1[i]+s1[i-1])
                             n2.append(1*total_mul)
+                            err=4
                     elif s1[i].isupper() and s1[i-1].isupper():
                         n1.append(s1[i])
                         n2.append(1*total_mul)
+                        err=6
                     else:
                         continue
+                        err=7
                 elif s1[i].isalpha() and s1[i-1].isnumeric():
                     if s1[i].isupper() and i>1:
                         if s1[i-1].isnumeric() and s1[i-2].isnumeric():
@@ -114,6 +126,9 @@ class Molecule:
                 mul1.append(temp_mul)
                 mul2.append(total_mul)
         return n1,n2
+    def getStats(self):
+        nn1,nn2=self.calculate_num()
+        return nn1,nn2
     def getMolecularWeight(self):
         nn1,nn2=self.calculate_num()
         mol_wt=[]
